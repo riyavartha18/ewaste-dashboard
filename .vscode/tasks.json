@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Check office conversion tools",
+			"type": "shell",
+			"command": "Get-Command soffice,libreoffice -ErrorAction SilentlyContinue | Select-Object Name,Source; Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like '*ewaste-submission-portal-FULL*' -and $_.CommandLine -like '*next*dev*' } | Select-Object ProcessId,Name",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validate Office full document viewer",
+			"type": "shell",
+			"command": "Set-Location ewaste-export; .\\node_modules\\.bin\\eslint.cmd src\\components\\office-file-preview.tsx src\\components\\file-preview-modal.tsx; if ($LASTEXITCODE -eq 0) { .\\node_modules\\.bin\\tsc.cmd --noEmit }",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

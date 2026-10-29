@@ -1,0 +1,55 @@
+// Prisma schema for the E-Waste Submission Portal (local-storage variant).
+//
+// Single owner account + submission metadata + file metadata. The actual
+// file bytes live on the filesystem under storage/ (see src/lib/storage.ts).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  role         String   @default("owner") // single owner; future-proof
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Submission {
+  id              String   @id @default(cuid())
+  title           String
+  category        String
+  submissionDate  String   // ISO YYYY-MM-DD
+  status          String   // "completed" | "draft"
+  description     String?
+  externalLinks   String   @default("[]") // JSON string of {label, url}[]
+  published       Boolean  @default(false)
+  ownerEmail      String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  files           SubmissionFile[]
+
+  @@index([ownerEmail])
+  @@index([submissionDate])
+  @@index([published])
+}
+
+model SubmissionFile {
+  id            String   @id @default(cuid())
+  submissionId  String
+  fileName      String
+  filePath      String   // relative path under storage/
+  fileType      String
+  fileSize      Int
+  createdAt     DateTime @default(now())
+  submission    Submission @relation(onDelete: Cascade, fields: [submissionId], references: [id])
+
+  @@index([submissionId])
+}

@@ -1,0 +1,15 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="36" height="36" rx="10" fill="#E4F0DF" stroke="#C8DEC1" stroke-width="1.5"/>
+  <g transform="translate(8,8) scale(0.96)" fill="none" stroke="#355844" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Three chasing-arrows forming the recycling symbol -->
+    <path d="M12 3 L16 10 L9 13 Z" fill="#355844" fill-opacity="0.12"/>
+    <path d="M16 10 L19 16 L13 19 L10 13 Z" fill="#355844" fill-opacity="0.12"/>
+    <path d="M9 13 L4 18 L7 24 L13 19 Z" fill="#355844" fill-opacity="0.12"/>
+    <path d="M12 3 L16 10 L9 13 Z"/>
+    <path d="M16 10 L19 16 L13 19 L10 13 Z"/>
+    <path d="M9 13 L4 18 L7 24 L13 19 Z"/>
+    <path d="M19 16 L22 11"/>
+    <path d="M4 18 L1.5 11"/>
+    <path d="M7 24 L13 24"/>
+  </g>
+</svg>

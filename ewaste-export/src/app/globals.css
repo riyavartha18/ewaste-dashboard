@@ -1,0 +1,198 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Pastel green brand tokens */
+  --color-cream: var(--cream);
+  --color-pastel-green: var(--pastel-green);
+  --color-sage: var(--sage);
+  --color-sage-foreground: var(--sage-foreground);
+  --color-forest: var(--forest);
+  --color-forest-foreground: var(--forest-foreground);
+  --color-charcoal: var(--charcoal);
+  --color-line: var(--line);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Pastel green & white palette */
+  --background: #F7FAF5;            /* warm off-white */
+  --foreground: #303832;            /* charcoal body text */
+  --card: #FFFFFF;                  /* pure white cards */
+  --card-foreground: #303832;
+  --popover: #FFFFFF;
+  --popover-foreground: #303832;
+
+  --primary: #355844;               /* forest green */
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #E4F0DF;             /* pastel green sections */
+  --secondary-foreground: #355844;
+
+  --muted: #E3EAE0;                 /* light green-grey */
+  --muted-foreground: #6B7869;      /* mid grey-green */
+
+  --accent: #C8DEC1;                /* sage green buttons */
+  --accent-foreground: #355844;
+
+  --destructive: #B8613C;           /* muted terracotta to stay gentle */
+  --destructive-foreground: #FFFFFF;
+
+  --border: #E3EAE0;                /* very light green-grey */
+  --input: #E3EAE0;
+  --ring: #C8DEC1;
+
+  --chart-1: #355844;
+  --chart-2: #6B9E7E;
+  --chart-3: #C8DEC1;
+  --chart-4: #E4F0DF;
+  --chart-5: #6B7869;
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #303832;
+  --sidebar-primary: #355844;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E4F0DF;        /* soft green highlight for active nav */
+  --sidebar-accent-foreground: #355844;
+  --sidebar-border: #E3EAE0;
+  --sidebar-ring: #C8DEC1;
+
+  /* Brand tokens */
+  --cream: #F7FAF5;
+  --pastel-green: #E4F0DF;
+  --sage: #C8DEC1;
+  --sage-foreground: #355844;
+  --forest: #355844;
+  --forest-foreground: #FFFFFF;
+  --charcoal: #303832;
+  --line: #E3EAE0;
+}
+
+.dark {
+  /* Pastel green palette is intentionally light-only.
+     We keep the same tokens so any dark-mode fallback remains consistent
+     with the brand identity rather than flipping to a high-contrast dark theme. */
+  --background: #F7FAF5;
+  --foreground: #303832;
+  --card: #FFFFFF;
+  --card-foreground: #303832;
+  --popover: #FFFFFF;
+  --popover-foreground: #303832;
+  --primary: #355844;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E4F0DF;
+  --secondary-foreground: #355844;
+  --muted: #E3EAE0;
+  --muted-foreground: #6B7869;
+  --accent: #C8DEC1;
+  --accent-foreground: #355844;
+  --destructive: #B8613C;
+  --destructive-foreground: #FFFFFF;
+  --border: #E3EAE0;
+  --input: #E3EAE0;
+  --ring: #C8DEC1;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #303832;
+  --sidebar-primary: #355844;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #E4F0DF;
+  --sidebar-accent-foreground: #355844;
+  --sidebar-border: #E3EAE0;
+  --sidebar-ring: #C8DEC1;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html, body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  body {
+    background-color: #F7FAF5;
+  }
+  /* Subtle scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E3EAE0;
+    border-radius: 9999px;
+    border: 2px solid #F7FAF5;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C8DEC1;
+  }
+}
+
+/* Reusable utility classes for the portal */
+@layer components {
+  .ew-card {
+    @apply bg-card border border-[#E3EAE0] rounded-xl shadow-[0_1px_2px_rgba(48,56,50,0.04),0_2px_8px_rgba(48,56,50,0.04)];
+  }
+  .ew-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[#C8DEC1] text-[#355844] font-medium px-4 py-2 transition-colors hover:bg-[#BDD3B5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8DEC1] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7FAF5] disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .ew-btn-forest {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[#355844] text-white font-medium px-4 py-2 transition-colors hover:bg-[#2B4737] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#355844] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F7FAF5] disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .ew-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-transparent text-[#355844] font-medium px-3 py-2 transition-colors hover:bg-[#E4F0DF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8DEC1] disabled:opacity-60 disabled:pointer-events-none;
+  }
+  .ew-input {
+    @apply w-full rounded-lg border border-[#E3EAE0] bg-white px-3 py-2 text-sm text-[#303832] placeholder:text-[#6B7869] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C8DEC1] focus-visible:border-[#C8DEC1] transition-colors;
+  }
+  .ew-chip {
+    @apply inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium;
+  }
+  .ew-dropzone {
+    @apply relative rounded-xl border-2 border-dashed border-[#C8DEC1] bg-[#E4F0DF]/40 px-6 py-10 text-center transition-colors hover:bg-[#E4F0DF]/70 focus-within:bg-[#E4F0DF]/70 cursor-pointer;
+  }
+}
